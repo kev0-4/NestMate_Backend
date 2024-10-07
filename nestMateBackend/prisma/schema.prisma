@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "mongodb"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+model User {
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  firstName          String
+  lastName           String
+  gender             String
+  dob                DateTime
+  verificationStatus Boolean
+  email              String    @unique
+  phone              String
+  password           String?
+  profilePictureUrl  String?
+  socialMediaLinks   String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  preferences        Json
+  ownedRooms         Room[]    @relation("RoomOwner")
+  matchesAsUser1     Match[]   @relation("User1")
+  matchesAsUser2     Match[]   @relation("User2")
+  sentReports        Report[]  @relation("Reporter")
+  receivedReports    Report[]  @relation("ReportedUser")
+}
+
+model Room {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  owner          User     @relation("RoomOwner", fields: [ownerId], references: [id])
+  ownerId        String   @db.ObjectId
+  title          String
+  description    String?
+  subLocality    String
+  city           String
+  state          String
+  pincode        String
+  rent           Int
+  roomType       String
+  amenities      String
+  photosUrl      String[]
+  availableFrom  DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Match {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  user1              User     @relation("User1", fields: [userId1], references: [id])
+  userId1            String   @db.ObjectId
+  user2              User     @relation("User2", fields: [userId2], references: [id])
+  userId2            String   @db.ObjectId
+  matchDate          DateTime
+  status             String
+  createdAt          DateTime @default(now())
+  chats              Json?
+  compatibilityScore Int      @default(100)
+}
+
+model Report {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  reporter       User     @relation("Reporter", fields: [reporterId], references: [id])
+  reporterId     String   @db.ObjectId
+  reportedUser   User     @relation("ReportedUser", fields: [reportedUserId], references: [id])
+  reportedUserId String   @db.ObjectId
+  reason         String
+  status         String
+  createdAt      DateTime @default(now())
+}
