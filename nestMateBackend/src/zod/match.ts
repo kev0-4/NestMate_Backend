@@ -25,14 +25,25 @@ export const updateMatchStatusSchema = z.object({
   ]),
 });
 
+// export const filterMatchSchema = z.object({
+//   userId: z.string(),
+//   location: z.string().optional(),
+//   minBudget: z.string().transform(Number).optional(),
+//   maxBudget: z.string().transform(Number).optional(),
+//   ageMin: z.string().transform(Number).optional(),
+//   ageMax: z.string().transform(Number).optional(),
+//   gender: z.string().optional(),
+//   page: z.string().transform(Number).default("1"),
+//   limit: z.string().transform(Number).default("10"),
+// });
 export const filterMatchSchema = z.object({
   userId: z.string(),
   location: z.string().optional(),
-  minBudget: z.string().transform(Number).optional(),
-  maxBudget: z.string().transform(Number).optional(),
-  ageMin: z.string().transform(Number).optional(),
-  ageMax: z.string().transform(Number).optional(),
-  gender: z.string().optional(),
-  page: z.string().transform(Number).default("1"),
-  limit: z.string().transform(Number).default("10"),
+  minBudget: z.string().transform((val) => val ? Number(val) : undefined).optional(),
+  maxBudget: z.string().transform((val) => val ? Number(val) : undefined).optional(),
+  ageMin: z.string().transform((val) => val ? Number(val) : undefined).optional(),
+  ageMax: z.string().transform((val) => val ? Number(val) : undefined).optional(),
+  gender: z.enum(["male", "female", "other"]).optional(),
+  page: z.string().transform((val) => Number(val || "1")).default("1"),
+  limit: z.string().transform((val) => Number(val || "10")).default("10"),
 });
