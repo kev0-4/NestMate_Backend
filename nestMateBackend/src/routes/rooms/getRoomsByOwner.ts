@@ -20,7 +20,7 @@ export const getRoomsByOwner = async (c: Context) => {
       prisma.room.findMany({
         where: { ownerId },
         include: {
-          location: true,
+          // location: true,
         },
         skip,
         take: limit,

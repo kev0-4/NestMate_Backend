@@ -6,7 +6,7 @@ import { updateRoomSchema } from "../../zod/room";
 export const updateRoom = async (c: Context) => {
   const roomId = c.req.param("roomId");
   const authUser = c.get("userId");
-
+  console.log(authUser)
   if (!authUser) return c.json({ error: "Unauthorized" }, 401);
 
   try {
@@ -22,8 +22,8 @@ export const updateRoom = async (c: Context) => {
       return c.json({ error: "Room not found" }, 404);
     }
 
-    if (existingRoom.ownerId !== authUser.id) {
-      return c.json({ error: "Unauthorized to update this room" }, 403);
+    if (existingRoom.ownerId !== authUser) {
+      return c.json({ error: "Unauthorized to update this room " }, 403);
     }
 
     const body = await c.req.json();
@@ -33,7 +33,6 @@ export const updateRoom = async (c: Context) => {
       where: { id: roomId },
       data: validatedData,
     });
-
     return c.json({ message: "Room updated successfully", room: updatedRoom });
   } catch (error) {
     console.error("Error updating room:", error);

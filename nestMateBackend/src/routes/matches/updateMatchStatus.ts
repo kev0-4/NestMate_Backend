@@ -20,7 +20,7 @@ export const updateMatchStatus = async (c: Context) => {
 
     if (!match) return c.json({ error: "Match not found" }, 404);
 
-    if (match.userId1 !== authUser.id && match.userId2 !== authUser.id)
+    if (match.userId1 !== authUser && match.userId2 !== authUser)
       return c.json({ error: "Unauthorized to update this match" }, 403);
 
     const updatedMatch = await prisma.match.update({

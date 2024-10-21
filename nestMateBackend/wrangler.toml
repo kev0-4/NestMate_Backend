@@ -1,7 +1,8 @@
 name = "nestmatebackend"
 compatibility_date = "2024-09-27"
 compatibility_flags = [ "nodejs_compat" ]
-
+[observability]
+enabled = true
 # [vars]
 # MY_VAR = "my-variable"
 DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNTIyMGQzZDMtZGZjMC00Y2M5LWFlZWMtNWQzOTM3OTIwYTU4IiwidGVuYW50X2lkIjoiMTUwZDJhZjdkNDBkMjkzNjBiZGE2ZmIwZjBlYzcwMmI0ZDQ0OTQ4NzA4N2FiZDU1NWRmNzI0ZTU0MzFjZjNiZSIsImludGVybmFsX3NlY3JldCI6IjBiZTNkYTMyLWExYjEtNDAzYS1hNTQ2LWIyY2Q2OTBhMWZiMyJ9.5R8e2bXfVq0kV90qbwIwrdAjqoKJMjNm-4NHzN761_0"

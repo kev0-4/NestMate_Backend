@@ -22,7 +22,7 @@ export const deleteRoom = async (c: Context) => {
       return c.json({ error: "Room not found" }, 404);
     }
 
-    if (room.ownerId !== authUser.id) {
+    if (room.ownerId !== authUser) {
       return c.json({ error: "Unauthorized to delete this room" }, 403);
     }
 

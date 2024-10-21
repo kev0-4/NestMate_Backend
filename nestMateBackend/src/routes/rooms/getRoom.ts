@@ -13,7 +13,7 @@ export const getRoom = async (c: Context) => {
     const room = await prisma.room.findUnique({
       where: { id: roomId },
       include: {
-        location: true,
+        // location: true,
         owner: {
           select: {
             id: true,

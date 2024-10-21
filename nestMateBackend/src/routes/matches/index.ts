@@ -21,7 +21,7 @@ matchRouter.post('/', authMiddleware,createMatch);
 matchRouter.get('/', authMiddleware,getMatches);
 matchRouter.get('/:matchId', authMiddleware,getMatchById)
 matchRouter.put('/:matchId', authMiddleware,updateMatchStatus);
-matchRouter.get('/filter', filterMatches);
+matchRouter.post('/filter', filterMatches);
 
 
 export default matchRouter

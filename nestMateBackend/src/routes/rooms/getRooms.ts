@@ -36,12 +36,12 @@ export const getRooms = async (c: Context) => {
     if (roomType) whereClause.roomType = roomType;
     if (availableFrom)
       whereClause.availableFrom = { gte: new Date(availableFrom) };
-
+    // need to change where claude
     const [rooms, totalCount] = await Promise.all([
       prisma.room.findMany({
         where: whereClause,
-        include: {
-          location: true,
+        include: { //@ts-ignore
+          // location: true,
           owner: {
             select: {
               id: true,
@@ -72,6 +72,6 @@ export const getRooms = async (c: Context) => {
     });
   } catch (error) {
     console.error("Error fetching rooms:", error);
-    return c.json({ error: "Failed to fetch rooms" }, 500);
+    return c.json({ error: "Failed to fetch rooms " }, 500);
   }
 };

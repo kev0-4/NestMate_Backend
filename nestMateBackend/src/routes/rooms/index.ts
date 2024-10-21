@@ -24,6 +24,6 @@ roomRouter.get("/", getRooms);
 roomRouter.get("/:roomId", getRoom);
 roomRouter.put("/:roomId", updateRoom);
 roomRouter.delete('/:roomId', deleteRoom)
-roomRouter.get('/:roomId', getRoomsByOwner)
+roomRouter.get('/', getRoomsByOwner)
 
 export default roomRouter

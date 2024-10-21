@@ -7,7 +7,7 @@ export const createRoom = async (c: Context) => {
   const authUser = c.get("userId");
 
   if (!authUser) {
-    return c.json({ error: "Unauthorized" }, 401);
+    return c.json({ error: "1Unauthorized"}, 401);
   }
 
   const prisma = new PrismaClient({

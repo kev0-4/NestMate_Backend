@@ -5,18 +5,21 @@ import { filterMatchSchema } from "../../zod/match";
 
 export const filterMatches = async (c: Context) => {
   try {
-    const query = c.req.query();
-    const validatedQuery = filterMatchSchema.parse(query);
+    const query = await c.req.json();
 
+    if (!query.userId) {
+      console.log(query)
+      return c.json({ error: "userId is required " }, 400);
+    }
+    const validatedQuery = filterMatchSchema.parse(query);
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
-
     const {
       userId,
-      location,
       minBudget,
       maxBudget,
+      location,
       ageMin,
       ageMax,
       gender,
@@ -36,7 +39,6 @@ export const filterMatches = async (c: Context) => {
         userId2: true,
       },
     });
-
     const matchedUserIds = userMatches
       .flatMap((match) => [match.userId1, match.userId2])
       .filter((id) => id !== userId);
@@ -96,7 +98,7 @@ export const filterMatches = async (c: Context) => {
           gender: true,
           dob: true,
           profilePictureUrl: true,
-          location: true,
+          //location: true,
           preferences: true,
         },
         skip,

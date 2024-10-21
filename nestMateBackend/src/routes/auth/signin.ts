@@ -40,6 +40,6 @@ export const signin = async (c: Context) => {
     return c.json({ message: "Signed in successful", token });
   } catch (error) {
     console.error(error);
-    return c.json({ error: "Internal server error occured" }, 500);
+    return c.json({ error: "Internal server error occured",  }, 500);
   }
 };
