@@ -15,23 +15,15 @@ Review System: Review past flatmates to get that trust
 
 Location-Based Search: You can search flatmates in your preferred neighborhoods
 
-Multi-Platform: Available on iOS, Android, and Web
 
 
-Tech Stack 
-
-Frontend
--React Native (Mobile)
--React.js (Web)
--Redux/Context API (State Management)
--Socket.io Client (Real-time chat)
 
 Backend
 -Node.js
--Express.js
+-Hono.js
 -MongoDB
--Socket.io
+-Prisma
 
 Cloud Services
--AWS/Google Cloud Platform
+-Cloudflare Workers
 -MongoDB Atlas
