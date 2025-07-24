@@ -6,8 +6,11 @@ import { preferenceSchema } from "../../zod/user";
 export const updatePreferences = async (c: Context) => {
   const userId = c.req.param("userId");
   const authUser = c.get("userId");
-
-  if (authUser.id !== userId)
+  console.log(userId)
+  console.log(authUser)
+  console.log(userId!==authUser)
+  const isTrue = userId==authUser
+  if (!isTrue)
     return c.json({ error: "Unauthorized to update these preferences" }, 403);
 
   try {
@@ -39,10 +42,11 @@ export const updatePreferences = async (c: Context) => {
 export const getPreferences = async (c: Context) => {
   const userId = c.req.param("userId");
   const authUser = c.get("userId");
-
-  if (authUser.id !== userId) {
+  const isTrue = userId == authUser
+  if (authUser !== userId) {
     return c.json({ error: "Unauthorized to view these preferences" }, 403);
   }
+ 
 
   try {
     const prisma = new PrismaClient({

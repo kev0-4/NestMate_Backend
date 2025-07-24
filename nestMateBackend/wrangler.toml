@@ -13,9 +13,9 @@ CLOUDINARY_API_KEY="969363628261119"
 CLOUDINARY_API_SECRET="rtnxaG1QjfqGK54cXtiJlOWsU1g"
 
 
-# [[kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+[[kv_namespaces]]
+binding = "KV"
+id = "df6cc76b4f8d41d5b531385720f281ce"
 
 # [[r2_buckets]]
 # binding = "MY_BUCKET"

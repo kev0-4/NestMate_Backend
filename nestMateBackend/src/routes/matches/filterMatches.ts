@@ -108,7 +108,7 @@ export const filterMatches = async (c: Context) => {
     ]);
 
     const totalPages = Math.ceil(totalCount / limit);
-
+    
     return c.json({
       matches: filteredMatches,
       pagination: {

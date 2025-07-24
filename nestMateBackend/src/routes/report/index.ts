@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 import { createReport } from './createReport';
+import { authMiddleware } from '../../middleware/auth';
 
 const reportRouter = new Hono<{
     Bindings: {
@@ -10,6 +11,6 @@ const reportRouter = new Hono<{
       CLOUDINARY_API_SECRET: string;
     };
   }>();
-reportRouter.post('/', createReport);
+reportRouter.post('/', authMiddleware,createReport);
 
 export default reportRouter;

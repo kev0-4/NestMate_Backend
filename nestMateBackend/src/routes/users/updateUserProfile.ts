@@ -45,7 +45,7 @@ export const updateUserProfile = async (c: Context) => {
         createdAt: true,
         updatedAt: true,
         preferences: true,
-        location: true,
+        // location: true,
       },
     });
 

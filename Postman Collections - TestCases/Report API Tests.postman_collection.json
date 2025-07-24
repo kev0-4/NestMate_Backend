@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "1263d9c9-9e38-472f-8ca2-7c05aa102bb1",
+		"name": "Report API Tests",
+		"description": "Postman collection to test the report API endpoint for creating a report.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45489108",
+		"_collection_link": "https://kev-9357696.postman.co/workspace/Kev's-Workspace~87f605ee-6f5d-4fa6-82d3-933b00def76f/collection/45489108-1263d9c9-9e38-472f-8ca2-7c05aa102bb1?action=share&source=collection_link&creator=45489108"
+	},
+	"item": [
+		{
+			"name": "Create Report",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"reportedUserId\": \"67036496a455cf1108c49fb3\", \"reason\": \"Inappropriate behavior in chat\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/reports",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"reports"
+					]
+				},
+				"description": "Creates a report against a user, authenticated with a JWT token."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"reportedUserId\": \"67036496a455cf1108c49fb3\", \"reason\": \"Inappropriate behavior in chat\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reports",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports"
+							]
+						},
+						"description": "Creates a report against a user, authenticated with a JWT token."
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"message\": \"Report filed successfully\", \"report\": {\"id\": \"{{reportId}}\", \"reporterId\": \"672f749793e61d89414a6a3c\", \"reportedUserId\": \"67036496a455cf1108c49fb3\", \"reason\": \"Inappropriate behavior in chat\", \"status\": \"pending\"}}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"reportedUserId\": \"67036496a455cf1108c49fb3\", \"reason\": \"Inappropriate behavior in chat\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reports",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports"
+							]
+						},
+						"description": "Creates a report against a user, authenticated with a JWT token."
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized\"}"
+				},
+				{
+					"name": "Reported User Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"reportedUserId\": \"67036496a455cf1108c49fb3\", \"reason\": \"Inappropriate behavior in chat\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reports",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports"
+							]
+						},
+						"description": "Creates a report against a user, authenticated with a JWT token."
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Reported user not found\"}"
+				},
+				{
+					"name": "Existing Report",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"reportedUserId\": \"67036496a455cf1108c49fb3\", \"reason\": \"Inappropriate behavior in chat\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reports",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports"
+							]
+						},
+						"description": "Creates a report against a user, authenticated with a JWT token."
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"An active report already exists for this user\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"reportedUserId\": \"67036496a455cf1108c49fb3\", \"reason\": \"Inappropriate behavior in chat\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reports",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports"
+							]
+						},
+						"description": "Creates a report against a user, authenticated with a JWT token."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to file report\"}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8787"
+		},
+		{
+			"key": "jwtTokenUser1",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzJmNzQ5NzkzZTYxZDg5NDE0YTZhM2MiLCJpYXQiOjE3NTMzMzkwNTMsImV4cCI6MTc1MzQyNTQ1M30.Av2tlYjWkrooamRC7G19vPYzZWEJ1fw8n5Bur6h6qXA"
+		},
+		{
+			"key": "jwtTokenUser2",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzAzNjQ5NmE0NTVjZjExMDhjNDlmYjMiLCJpYXQiOjE3NTMzMzk2OTEsImV4cCI6MTc1MzQyNjA5MX0.4Rq9WZyOTtbsFk8g4_8J2StlJWHIFuzoxcCjEDJmC80"
+		},
+		{
+			"key": "reportId",
+			"value": "exampleReportId"
+		}
+	]
+}

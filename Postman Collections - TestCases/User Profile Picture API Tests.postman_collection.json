@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "4d510bc0-9737-4489-a9cb-770dee87e67d",
+		"name": "User Profile Picture API Tests",
+		"description": "Postman collection to test the user profile picture upload endpoint.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45489108",
+		"_collection_link": "https://kev-9357696.postman.co/workspace/Kev's-Workspace~87f605ee-6f5d-4fa6-82d3-933b00def76f/collection/45489108-4d510bc0-9737-4489-a9cb-770dee87e67d?action=share&source=collection_link&creator=45489108"
+	},
+	"item": [
+		{
+			"name": "Upload Profile Picture",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profilePicture",
+							"description": "Upload a sample image file (e.g., JPG, PNG)",
+							"type": "file",
+							"src": "sample-profile-picture.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId1}}",
+						"profile-picture"
+					]
+				},
+				"description": "Uploads a profile picture for the authenticated user to Cloudinary."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"description": "Upload a sample image file (e.g., JPG, PNG)",
+									"type": "file",
+									"src": "sample-profile-picture.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"profile-picture"
+							]
+						},
+						"description": "Uploads a profile picture for the authenticated user to Cloudinary."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"message\": \"Profile picture updated successfully\", \"profilePictureUrl\": \"{{profilePictureUrl}}\"}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"description": "Upload a sample image file (e.g., JPG, PNG)",
+									"type": "file",
+									"src": "sample-profile-picture.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"profile-picture"
+							]
+						},
+						"description": "Uploads a profile picture for the authenticated user to Cloudinary."
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized to update this profile picture\"}"
+				},
+				{
+					"name": "No File Uploaded",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"description": "Upload a sample image file (e.g., JPG, PNG)",
+									"type": "file",
+									"src": "sample-profile-picture.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"profile-picture"
+							]
+						},
+						"description": "Uploads a profile picture for the authenticated user to Cloudinary."
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"No file uploaded or invalid file\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"description": "Upload a sample image file (e.g., JPG, PNG)",
+									"type": "file",
+									"src": "sample-profile-picture.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"profile-picture"
+							]
+						},
+						"description": "Uploads a profile picture for the authenticated user to Cloudinary."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to upload profile picture\"}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8787"
+		},
+		{
+			"key": "jwtTokenUser1",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzJmNzQ5NzkzZTYxZDg5NDE0YTZhM2MiLCJpYXQiOjE3NTMzMzkwNTMsImV4cCI6MTc1MzQyNTQ1M30.Av2tlYjWkrooamRC7G19vPYzZWEJ1fw8n5Bur6h6qXA"
+		},
+		{
+			"key": "jwtTokenUser2",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzAzNjQ5NmE0NTVjZjExMDhjNDlmYjMiLCJpYXQiOjE3NTMzMzk2OTEsImV4cCI6MTc1MzQyNjA5MX0.4Rq9WZyOTtbsFk8g4_8J2StlJWHIFuzoxcCjEDJmC80"
+		},
+		{
+			"key": "userId1",
+			"value": "672f749793e61d89414a6a3c"
+		},
+		{
+			"key": "userId2",
+			"value": "67036496a455cf1108c49fb3"
+		},
+		{
+			"key": "profilePictureUrl",
+			"value": "https://res.cloudinary.com/your_cloud_name/image/upload/profile_pictures/sample_profile_picture.jpg"
+		}
+	]
+}

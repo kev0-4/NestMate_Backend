@@ -1,0 +1,1077 @@
+{
+	"info": {
+		"_postman_id": "6a45cdfe-e85d-44eb-ac55-7ccbdd2d3b4e",
+		"name": "Users API Tests",
+		"description": "Postman collection to test the users API endpoints for profile management, preferences, and profile picture upload.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45489108",
+		"_collection_link": "https://kev-9357696.postman.co/workspace/Kev's-Workspace~87f605ee-6f5d-4fa6-82d3-933b00def76f/collection/45489108-6a45cdfe-e85d-44eb-ac55-7ccbdd2d3b4e?action=share&source=collection_link&creator=45489108"
+	},
+	"item": [
+		{
+			"name": "Get User Profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId1}}"
+					]
+				},
+				"description": "Retrieves the profile of the authenticated user."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Retrieves the profile of the authenticated user."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"id\": \"{{userId1}}\", \"firstName\": \"\", \"lastName\": \"\", \"email\": \"2@gmail.com\", \"phone\": \"\", \"gender\": \"\", \"dob\": \"\", \"profilePictureUrl\": \"\", \"socialMediaLinks\": \"\", \"verificationStatus\": \"\", \"createdAt\": \"\", \"updatedAt\": \"\", \"preferences\": {}, \"location\": {}}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Retrieves the profile of the authenticated user."
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized\"}"
+				},
+				{
+					"name": "User Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Retrieves the profile of the authenticated user."
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"User not found\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Retrieves the profile of the authenticated user."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Internal server error\"}"
+				}
+			]
+		},
+		{
+			"name": "Update User Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"phone\": \"1234567890\", \"gender\": \"male\", \"dob\": \"1990-01-01\", \"socialMediaLinks\": \"twitter.com/johndoe\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId1}}"
+					]
+				},
+				"description": "Updates the profile of the authenticated user."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"phone\": \"1234567890\", \"gender\": \"male\", \"dob\": \"1990-01-01\", \"socialMediaLinks\": \"twitter.com/johndoe\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Updates the profile of the authenticated user."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"id\": \"{{userId1}}\", \"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"2@gmail.com\", \"phone\": \"1234567890\", \"gender\": \"male\", \"dob\": \"1990-01-01\", \"profilePictureUrl\": \"\", \"socialMediaLinks\": \"twitter.com/johndoe\", \"verificationStatus\": \"\", \"createdAt\": \"\", \"updatedAt\": \"\", \"preferences\": {}, \"location\": {}}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"phone\": \"1234567890\", \"gender\": \"male\", \"dob\": \"1990-01-01\", \"socialMediaLinks\": \"twitter.com/johndoe\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Updates the profile of the authenticated user."
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized\"}"
+				},
+				{
+					"name": "Email Already in Use",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"phone\": \"1234567890\", \"gender\": \"male\", \"dob\": \"1990-01-01\", \"socialMediaLinks\": \"twitter.com/johndoe\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Updates the profile of the authenticated user."
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Email already in use\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"phone\": \"1234567890\", \"gender\": \"male\", \"dob\": \"1990-01-01\", \"socialMediaLinks\": \"twitter.com/johndoe\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Updates the profile of the authenticated user."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Internal server error\"}"
+				}
+			]
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId1}}"
+					]
+				},
+				"description": "Deletes the authenticated user's account and associated data."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Deletes the authenticated user's account and associated data."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"message\": \"User account deleted successfully\"}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Deletes the authenticated user's account and associated data."
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}"
+							]
+						},
+						"description": "Deletes the authenticated user's account and associated data."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to delete user account\"}"
+				}
+			]
+		},
+		{
+			"name": "Upload Profile Picture",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profilePicture",
+							"description": "Upload a sample image file (e.g., JPG, PNG)",
+							"type": "file",
+							"src": "sample-profile-picture.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId1}}",
+						"profile-picture"
+					]
+				},
+				"description": "Uploads a profile picture for the authenticated user."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"description": "Upload a sample image file (e.g., JPG, PNG)",
+									"type": "file",
+									"src": "sample-profile-picture.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"profile-picture"
+							]
+						},
+						"description": "Uploads a profile picture for the authenticated user."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"message\": \"Profile picture updated successfully\", \"profilePictureUrl\": \"{{profilePictureUrl}}\"}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"description": "Upload a sample image file (e.g., JPG, PNG)",
+									"type": "file",
+									"src": "sample-profile-picture.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"profile-picture"
+							]
+						},
+						"description": "Uploads a profile picture for the authenticated user."
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized to update this profile picture\"}"
+				},
+				{
+					"name": "No File Uploaded",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"description": "Upload a sample image file (e.g., JPG, PNG)",
+									"type": "file",
+									"src": "sample-profile-picture.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"profile-picture"
+							]
+						},
+						"description": "Uploads a profile picture for the authenticated user."
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"No file uploaded or invalid file\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"description": "Upload a sample image file (e.g., JPG, PNG)",
+									"type": "file",
+									"src": "sample-profile-picture.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"profile-picture"
+							]
+						},
+						"description": "Uploads a profile picture for the authenticated user."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to upload profile picture\"}"
+				}
+			]
+		},
+		{
+			"name": "Update Preferences",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"ageRange\": {\"min\": 18, \"max\": 30}, \"gender\": \"any\", \"smoker\": false, \"pet\": true, \"rentRange\": {\"min\": 500, \"max\": 1500}, \"roomType\": \"private\", \"location\": \"New York\", \"occupancy\": \"immediate\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId1}}/preferences",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId1}}",
+						"preferences"
+					]
+				},
+				"description": "Updates the preferences of the authenticated user."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ageRange\": {\"min\": 18, \"max\": 30}, \"gender\": \"any\", \"smoker\": false, \"pet\": true, \"rentRange\": {\"min\": 500, \"max\": 1500}, \"roomType\": \"private\", \"location\": \"New York\", \"occupancy\": \"immediate\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/preferences",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"preferences"
+							]
+						},
+						"description": "Updates the preferences of the authenticated user."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"message\": \"Preferences updated successfully\", \"preferences\": {\"ageRange\": {\"min\": 18, \"max\": 30}, \"gender\": \"any\", \"smoker\": false, \"pet\": true, \"rentRange\": {\"min\": 500, \"max\": 1500}, \"roomType\": \"private\", \"location\": \"New York\", \"occupancy\": \"immediate\"}}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ageRange\": {\"min\": 18, \"max\": 30}, \"gender\": \"any\", \"smoker\": false, \"pet\": true, \"rentRange\": {\"min\": 500, \"max\": 1500}, \"roomType\": \"private\", \"location\": \"New York\", \"occupancy\": \"immediate\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/preferences",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"preferences"
+							]
+						},
+						"description": "Updates the preferences of the authenticated user."
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized to update these preferences\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ageRange\": {\"min\": 18, \"max\": 30}, \"gender\": \"any\", \"smoker\": false, \"pet\": true, \"rentRange\": {\"min\": 500, \"max\": 1500}, \"roomType\": \"private\", \"location\": \"New York\", \"occupancy\": \"immediate\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/preferences",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"preferences"
+							]
+						},
+						"description": "Updates the preferences of the authenticated user."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to update preferences\"}"
+				}
+			]
+		},
+		{
+			"name": "Get Preferences",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/users/{{userId1}}/preferences",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"{{userId1}}",
+						"preferences"
+					]
+				},
+				"description": "Retrieves the preferences of the authenticated user."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/preferences",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"preferences"
+							]
+						},
+						"description": "Retrieves the preferences of the authenticated user."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"preferences\": {\"ageRange\": {\"min\": 18, \"max\": 30}, \"gender\": \"any\", \"smoker\": false, \"pet\": true, \"rentRange\": {\"min\": 500, \"max\": 1500}, \"roomType\": \"private\", \"location\": \"New York\", \"occupancy\": \"immediate\"}}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/preferences",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"preferences"
+							]
+						},
+						"description": "Retrieves the preferences of the authenticated user."
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized to view these preferences\"}"
+				},
+				{
+					"name": "User Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/preferences",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"preferences"
+							]
+						},
+						"description": "Retrieves the preferences of the authenticated user."
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"User not found\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId1}}/preferences",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId1}}",
+								"preferences"
+							]
+						},
+						"description": "Retrieves the preferences of the authenticated user."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to fetch preferences\"}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8787"
+		},
+		{
+			"key": "jwtTokenUser1",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzJmNzQ5NzkzZTYxZDg5NDE0YTZhM2MiLCJpYXQiOjE3NTMzMzkwNTMsImV4cCI6MTc1MzQyNTQ1M30.Av2tlYjWkrooamRC7G19vPYzZWEJ1fw8n5Bur6h6qXA"
+		},
+		{
+			"key": "jwtTokenUser2",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzAzNjQ5NmE0NTVjZjExMDhjNDlmYjMiLCJpYXQiOjE3NTMzMzk2OTEsImV4cCI6MTc1MzQyNjA5MX0.4Rq9WZyOTtbsFk8g4_8J2StlJWHIFuzoxcCjEDJmC80"
+		},
+		{
+			"key": "userId1",
+			"value": "672f749793e61d89414a6a3c"
+		},
+		{
+			"key": "userId2",
+			"value": "67036496a455cf1108c49fb3"
+		},
+		{
+			"key": "profilePictureUrl",
+			"value": "https://res.cloudinary.com/your_cloud_name/image/upload/profile_pictures/sample_profile_picture.jpg"
+		}
+	]
+}

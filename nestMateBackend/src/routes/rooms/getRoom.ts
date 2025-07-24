@@ -4,7 +4,7 @@ import { Context } from "hono";
 
 export const getRoom = async (c: Context) => {
   const roomId = c.req.param("roomId");
-
+  console.log(roomId)
   try {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,

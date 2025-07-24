@@ -8,17 +8,12 @@ import { Context } from "hono";
 
 export const uploadProfilePicture = async (c: Context) => {
   const userId = c.req.param("userId");
-  const authUser = c.get("userId"); // Assuming authenticateToken middleware sets this
-  cloudinary.config({
-    cloud_name: c.env.CLOUDINARY_CLOUD_NAME,
-    api_key: c.env.CLOUDINARY_API_KEY,
-    api_secret: c.env.CLOUDINARY_API_SECRET,
-  });
-  if (authUser.id !== userId) {
-    return c.json(
-      { error: "Unauthorized to update this profile picture" },
-      403
-    );
+  const authUser = c.get("userId");
+  const cloudName = c.env.CLOUDINARY_CLOUD_NAME;
+  const uploadPreset = c.env.CLOUDINARY_UPLOAD_PRESET;
+
+  if (authUser !== userId) {
+    return c.json({ error: "Unauthorized to update this profile picture" }, 403);
   }
 
   try {
@@ -33,26 +28,24 @@ export const uploadProfilePicture = async (c: Context) => {
       return c.json({ error: "No file uploaded or invalid file" }, 400);
     }
 
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
+    // Convert file to base64 or blob
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset); // must be unsigned preset
 
-    const result = await new Promise((resolve, reject) => {
-      const uploadStream = cloudinary.uploader.upload_stream(
-        {
-          folder: "profile_pictures",
-          transformation: [{ width: 500, height: 500, crop: "limit" }],
-        },
-        (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
-        }
-      );
-
-      uploadStream.end(buffer);
+    const cloudinaryRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+      method: "POST",
+      body: formData,
     });
 
+    const result = await cloudinaryRes.json();
+
+    if (!result.secure_url) {
+      throw new Error("Cloudinary upload failed");
+    }
+
     const updatedUser = await prisma.user.update({
-      where: { id: userId }, //@ts-ignore
+      where: { id: userId },
       data: { profilePictureUrl: result.secure_url },
     });
 
@@ -68,6 +61,7 @@ export const uploadProfilePicture = async (c: Context) => {
     return c.json({ error: "Failed to upload profile picture" }, 500);
   }
 };
+
 
 // import { v2 as cloudinary } from "cloudinary";
 // import { PrismaClient } from "@prisma/client/edge";

@@ -5,8 +5,9 @@ import { reportSchema } from "../../zod/report";
 
 export const createReport = async (c: Context) => {
   const authUser = c.get("userId");
-
-  if (!authUser) return c.json({ error: "Unauthorized" }, 401);
+ 
+  if (!authUser)
+    return c.json({ error: "Unauthorized from route" }, 401);
 
   try {
     const prisma = new PrismaClient({
@@ -34,10 +35,10 @@ export const createReport = async (c: Context) => {
         { error: "An active report already exists for this user" },
         409
       );
-
+      console.log(authUser)
     const newReport = await prisma.report.create({
       data: {
-        reporterId: authUser.id,
+        reporterId: authUser,
         reportedUserId: reportedUserId,
         reason: reason,
         status: "pending",

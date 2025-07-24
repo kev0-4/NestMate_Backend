@@ -1,0 +1,868 @@
+{
+	"info": {
+		"_postman_id": "d2bd3599-d05d-459f-8031-1808707874b8",
+		"name": "Matches API Tests",
+		"description": "Postman collection to test the matches API endpoints for creating, retrieving, updating, and filtering matches.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45489108",
+		"_collection_link": "https://kev-9357696.postman.co/workspace/Kev's-Workspace~87f605ee-6f5d-4fa6-82d3-933b00def76f/collection/45489108-d2bd3599-d05d-459f-8031-1808707874b8?action=share&source=collection_link&creator=45489108"
+	},
+	"item": [
+		{
+			"name": "Create Match",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId1\": \"672f749793e61d89414a6a3c\", \"userId2\": \"67036496a455cf1108c49fb3\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/matches",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"matches"
+					]
+				},
+				"description": "Creates a new match between two users."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId1\": \"672f749793e61d89414a6a3c\", \"userId2\": \"67036496a455cf1108c49fb3\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches"
+							]
+						},
+						"description": "Creates a new match between two users."
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"message\": \"Match created successfully Compatibility Score {{compatibilityScore}}\", \"match\": {\"id\": \"{{matchId}}\", \"userId1\": \"672f749793e61d89414a6a3c\", \"userId2\": \"67036496a455cf1108c49fb3\", \"matchDate\": \"{{matchDate}}\", \"status\": \"pending\", \"compatibilityScore\": {{compatibilityScore}}, \"chats\": []}}"
+				},
+				{
+					"name": "Users Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId1\": \"672f749793e61d89414a6a3c\", \"userId2\": \"67036496a455cf1108c49fb3\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches"
+							]
+						},
+						"description": "Creates a new match between two users."
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"One or both users not found\"}"
+				},
+				{
+					"name": "Match Already Exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId1\": \"672f749793e61d89414a6a3c\", \"userId2\": \"67036496a455cf1108c49fb3\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches"
+							]
+						},
+						"description": "Creates a new match between two users."
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Match already exists between these users\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId1\": \"672f749793e61d89414a6a3c\", \"userId2\": \"67036496a455cf1108c49fb3\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches"
+							]
+						},
+						"description": "Creates a new match between two users."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to create match\"}"
+				}
+			]
+		},
+		{
+			"name": "Get Matches",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/matches?page=1&limit=10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"matches"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Retrieves paginated matches for the authenticated user."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/matches?page=1&limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Retrieves paginated matches for the authenticated user."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"matches\": [], \"pagination\": {\"currentPage\": 1, \"totalPages\": 0, \"totalCount\": 0, \"hasNextPage\": false, \"hasPreviousPage\": false}}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/matches?page=1&limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Retrieves paginated matches for the authenticated user."
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/matches?page=1&limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Retrieves paginated matches for the authenticated user."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to fetch matches\"}"
+				}
+			]
+		},
+		{
+			"name": "Get Match By ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/matches/{{matchId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"matches",
+						"{{matchId}}"
+					]
+				},
+				"description": "Retrieves a specific match by its ID."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/matches/{{matchId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"{{matchId}}"
+							]
+						},
+						"description": "Retrieves a specific match by its ID."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"id\": \"{{matchId}}\", \"userId1\": \"672f749793e61d89414a6a3c\", \"userId2\": \"67036496a455cf1108c49fb3\", \"matchDate\": \"{{matchDate}}\", \"status\": \"pending\", \"compatibilityScore\": {{compatibilityScore}}, \"chats\": [], \"user1\": {\"id\": \"672f749793e61d89414a6a3c\", \"firstName\": \"\", \"lastName\": \"\", \"profilePictureUrl\": \"\"}, \"user2\": {\"id\": \"67036496a455cf1108c49fb3\", \"firstName\": \"\", \"lastName\": \"\", \"profilePictureUrl\": \"\"}}"
+				},
+				{
+					"name": "Match Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/matches/{{matchId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"{{matchId}}"
+							]
+						},
+						"description": "Retrieves a specific match by its ID."
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Match not found\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/matches/{{matchId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"{{matchId}}"
+							]
+						},
+						"description": "Retrieves a specific match by its ID."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to fetch match\"}"
+				}
+			]
+		},
+		{
+			"name": "Update Match Status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwtTokenUser1}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"status\": \"accepted\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/matches/{{matchId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"matches",
+						"{{matchId}}"
+					]
+				},
+				"description": "Updates the status of a specific match."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"status\": \"accepted\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches/{{matchId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"{{matchId}}"
+							]
+						},
+						"description": "Updates the status of a specific match."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"message\": \"Match status updated successfully\", \"match\": {\"id\": \"{{matchId}}\", \"userId1\": \"672f749793e61d89414a6a3c\", \"userId2\": \"67036496a455cf1108c49fb3\", \"matchDate\": \"{{matchDate}}\", \"status\": \"accepted\", \"compatibilityScore\": {{compatibilityScore}}, \"chats\": []}}"
+				},
+				{
+					"name": "Match Not Found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"status\": \"accepted\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches/{{matchId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"{{matchId}}"
+							]
+						},
+						"description": "Updates the status of a specific match."
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Match not found\"}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"status\": \"accepted\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches/{{matchId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"{{matchId}}"
+							]
+						},
+						"description": "Updates the status of a specific match."
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Unauthorized to update this match\"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtTokenUser1}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"status\": \"accepted\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches/{{matchId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"{{matchId}}"
+							]
+						},
+						"description": "Updates the status of a specific match."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to update match status\"}"
+				}
+			]
+		},
+		{
+			"name": "Filter Matches",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\": \"672f749793e61d89414a6a3c\", \"minBudget\": 1000, \"maxBudget\": 5000, \"location\": \"New York\", \"ageMin\": 18, \"ageMax\": 30, \"gender\": \"female\", \"page\": 1, \"limit\": 10}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/matches/filter",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"matches",
+						"filter"
+					]
+				},
+				"description": "Filters matches based on user preferences."
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\": \"672f749793e61d89414a6a3c\", \"minBudget\": 1000, \"maxBudget\": 5000, \"location\": \"New York\", \"ageMin\": 18, \"ageMax\": 30, \"gender\": \"female\", \"page\": 1, \"limit\": 10}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches/filter",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"filter"
+							]
+						},
+						"description": "Filters matches based on user preferences."
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"matches\": [], \"pagination\": {\"currentPage\": 1, \"totalPages\": 0, \"totalCount\": 0, \"hasNextPage\": false, \"hasPreviousPage\": false}}"
+				},
+				{
+					"name": "Missing userId",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\": \"672f749793e61d89414a6a3c\", \"minBudget\": 1000, \"maxBudget\": 5000, \"location\": \"New York\", \"ageMin\": 18, \"ageMax\": 30, \"gender\": \"female\", \"page\": 1, \"limit\": 10}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches/filter",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"filter"
+							]
+						},
+						"description": "Filters matches based on user preferences."
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"userId is required \"}"
+				},
+				{
+					"name": "Error Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\": \"672f749793e61d89414a6a3c\", \"minBudget\": 1000, \"maxBudget\": 5000, \"location\": \"New York\", \"ageMin\": 18, \"ageMax\": 30, \"gender\": \"female\", \"page\": 1, \"limit\": 10}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/matches/filter",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"matches",
+								"filter"
+							]
+						},
+						"description": "Filters matches based on user preferences."
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Failed to filter matches\"}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8787"
+		},
+		{
+			"key": "jwtTokenUser1",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzJmNzQ5NzkzZTYxZDg5NDE0YTZhM2MiLCJpYXQiOjE3NTMzMzkwNTMsImV4cCI6MTc1MzQyNTQ1M30.Av2tlYjWkrooamRC7G19vPYzZWEJ1fw8n5Bur6h6qXA"
+		},
+		{
+			"key": "jwtTokenUser2",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzAzNjQ5NmE0NTVjZjExMDhjNDlmYjMiLCJpYXQiOjE3NTMzMzk2OTEsImV4cCI6MTc1MzQyNjA5MX0.4Rq9WZyOTtbsFk8g4_8J2StlJWHIFuzoxcCjEDJmC80"
+		},
+		{
+			"key": "matchId",
+			"value": "exampleMatchId"
+		},
+		{
+			"key": "compatibilityScore",
+			"value": "0"
+		},
+		{
+			"key": "matchDate",
+			"value": "2025-07-24T12:00:00.000Z"
+		}
+	]
+}

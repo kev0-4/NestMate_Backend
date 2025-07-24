@@ -22,7 +22,7 @@ usersRouter.get('/:userId', authMiddleware,getUserProfile)
 usersRouter.put('/:userId', authMiddleware,updateUserProfile)
 usersRouter.delete('/:userId',authMiddleware,deleteUser);
 usersRouter.post('/:userId/profile-picture',authMiddleware,uploadProfilePicture);
-usersRouter.put('/:userId/preferences', updatePreferences);
-usersRouter.get('/:userId/preferences', getPreferences);
+usersRouter.put('/:userId/preferences', authMiddleware,updatePreferences);
+usersRouter.get('/:userId/preferences', authMiddleware,getPreferences);
 
 export default usersRouter
