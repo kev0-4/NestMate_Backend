@@ -7,6 +7,7 @@ import matchRouter from "./routes/matches";
 import usersRouter from "./routes/users";
 import chatRouter from "./routes/chat";
 import reportRouter from "./routes/report";
+import { cors } from "hono/cors";
 
 const app = new Hono<{
   Bindings: {
@@ -15,6 +16,17 @@ const app = new Hono<{
     DIRECT_DATABASE_URL: string;
   };
 }>();
+
+app.use(
+  "*",
+  cors({
+    origin: "*",
+    allowHeaders: ["Content-Type", "Authorization"],
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    maxAge: 86400,
+  })
+);
+
 // app.use(authMiddleware)
 app.route("/auth", auth);
 app.route("/users", usersRouter);

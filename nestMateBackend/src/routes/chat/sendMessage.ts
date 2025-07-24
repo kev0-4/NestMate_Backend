@@ -4,9 +4,9 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import { sendmessageSchema } from "../../zod/chat";
 
 export const sendMessage = async (c: Context) => {
-  const matchId = c.req.param("matchid");
+  const matchId = c.req.param("matchId");
   const senderId = c.get("userId");
-
+  console.log(matchId)
   try {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
